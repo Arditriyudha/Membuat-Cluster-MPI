@@ -128,6 +128,9 @@ Contoh:
 ```bash
 sudo apt install openmpi-bin libopenmpi-dev
 ```
+Contoh:
+</br>
+![Install MPI - Worker 2.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20MPI%20-%20Worker%202.jpeg)
 ### 2. Install Library `mpi4py`
 > Lakukan di **Master** dan **worker**
 Install `mpi4py` dengan pip. Install package `python3-pip` jika belum memiliki pip.
