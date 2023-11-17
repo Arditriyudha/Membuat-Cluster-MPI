@@ -26,8 +26,7 @@ Sama seperti master, Kemudian tambahkan entri IP dan alias hanya untuk IP master
 ```
 Contoh:
 </br>
-
-[Configurasi Hosts - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Configurasi%20Hosts%20-%20Master.jpeg)
+![Configurasi Hosts - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Configurasi%20Hosts%20-%20Master.jpeg)
 ## Buat User Baru
 ### 1. Buat User
 > lakukan di **Master** dan di **worker**
@@ -95,8 +94,7 @@ sudo apt install nfs-kernel-kernel
 ```
 Contoh:
 </br>
-
-[Install NFS-Server - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS-Server%20-%20Master.jpeg)
+![Install NFS-Server - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS-Server%20-%20Master.jpeg)
 ### 3. Konfigurasi File `/etc/exports`
 > Lakukan di **Master**
 Buka file `/etc/exports` menggunakan nano (atau gunakan editor teks lainnya jika diinginkan).
@@ -124,7 +122,7 @@ Coba buat file atau folder dalam di shared folder di salah satu komputer. Seharu
 Contoh:
 </br>
 
-[Install NFS - Worker 2.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS%20-%20Worker%202.jpeg)
+![Install NFS - Worker 2.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS%20-%20Worker%202.jpeg)
 ## Konfigurasi MPI
 ### 1. Install MPI
 > Lakukan di **Master** dan **worker**
@@ -165,8 +163,7 @@ Hello world from worker 0 of 4
 ```
 Contoh:
 </br>
-
-[Run - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Run%20-%20Master.jpeg)
+![Run - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Run%20-%20Master.jpeg)
 
 Dibuat untuk **memenuhi Tugas Mata Kuliah Pemrosesan Parallel**
 **Kelompok 2 Kelas SK5A** 
