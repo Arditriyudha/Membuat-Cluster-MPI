@@ -54,7 +54,9 @@ ssh <nama user>@<host>
 # Misal: ssh mpiuser@worker1
 ```
 contoh :
+</br>
 ![Check SSH - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Check%20SSH%20-%20Master.jpeg)
+
 ### 2. Buat Key
 > lakukan di **Master**
 masukkan perintah berikut.
