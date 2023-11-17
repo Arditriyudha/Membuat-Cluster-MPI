@@ -24,6 +24,9 @@ Sama seperti master, Kemudian tambahkan entri IP dan alias hanya untuk IP master
 10.9.56.77 master
 10.9.58.78 worker1
 ```
+Contoh:
+</br>
+[Configurasi Hosts - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Configurasi%20Hosts%20-%20Master.jpeg)
 ## Buat User Baru
 ### 1. Buat User
 > lakukan di **Master** dan di **worker**
@@ -88,6 +91,9 @@ mkdir ~/cloud
 ```bash
 sudo apt install nfs-kernel-kernel
 ```
+Contoh:
+</br>
+[Install NFS-Server - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS-Server%20-%20Master.jpeg)
 ### 3. Konfigurasi File `/etc/exports`
 > Lakukan di **Master**
 Buka file `/etc/exports` menggunakan nano (atau gunakan editor teks lainnya jika diinginkan).
@@ -112,7 +118,9 @@ sudo mount <server host>:<shared folder di server> <shared folder di client>
 # Misal: sudo mount master:/home/mpiuser/cloud /home/mpiuser/cloud
 ```
 Coba buat file atau folder dalam di shared folder di salah satu komputer. Seharusnya, file atau folder tersebut akan tampil di direktori yang sama di setiap komputer.
-
+Contoh:
+</br>
+[Install NFS - Worker 2.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Install%20NFS%20-%20Worker%202.jpeg)
 ## Konfigurasi MPI
 ### 1. Install MPI
 > Lakukan di **Master** dan **worker**
@@ -126,3 +134,34 @@ Install `mpi4py` dengan pip. Install package `python3-pip` jika belum memiliki p
 sudo apt install python3-pip
 pip install mpi4py
 ```
+### 3. Testing MPI
+> Lakukan di **Master**
+Buat dan edit file `test.py` di shared folder (cloud) dengan menggunakan perintah berikut.
+```bash
+vim ~/cloud/test.py
+```
+Kemudian tambahkan beris berikut ke dala file `test.py`
+```bash
+from mpi4py import MPI
+comm = MPI.COMM_WORLD
+size = comm.Get_size()
+worker = comm.Get_rank()
+print("Hello world from worker", str(worker), "of", str(size))
+```
+Selanjutnya jalankan file `test.py` dengan MPI.
+```bash
+mpirun -np <jumlah prosesor> -host <daftar host> python3 test.py
+# Misal: mpirun -np 3 -host master,worker1,worker2 python3 test.py
+```
+Output:
+```bash
+Hello world from worker 1 of 4
+Hello world from worker 2 of 4
+Hello world from worker 0 of 4
+```
+Contoh:
+</br>
+[Run - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Run%20-%20Master.jpeg)
+
+Dibuat untuk **memenuhi Tugas Mata Kuliah Pemrosesan Parallel**
+**Kelompok 2 Kelas SK5A** 
