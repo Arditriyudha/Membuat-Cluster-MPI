@@ -58,7 +58,6 @@ ssh <nama user>@<host>
 ```
 contoh :
 </br>
-
 ![Check SSH - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Check%20SSH%20-%20Master.jpeg)
 
 ### 2. Buat Key
@@ -165,5 +164,18 @@ Contoh:
 </br>
 ![Run - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Run%20-%20Master.jpeg)
 
+kemudian kami juga mencoba menjalankan beberapa program lain, dan menghasilkan output sebagai berikut.
+</br>
+![HASIL RUN MASTER.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/HASIL%20RUN%20MASTER.jpeg)
+
 Dibuat untuk **memenuhi Tugas Mata Kuliah Pemrosesan Parallel**
-**Kelompok 2 Kelas SK5A** 
+**Kelompok 2 Kelas SK5A**
+**<ol>
+  <li> Muhammad Dzaky Khairy (09011182126001)</li>
+  <li> Edo Pratama (09011182126007) </li>
+  <li> Dhani Saputra (09011182126019)</li>
+  <li> Ardi Tri Yudha (09011282126043) </li>
+</ol>**
+
+
+
