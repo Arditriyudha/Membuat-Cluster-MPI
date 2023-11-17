@@ -6,8 +6,8 @@ Pada tutorial ini, kita akan memahami langkah-langkah yang diperlukan untuk memb
 <ol>
   <li> Siapkan beberapa komputer. Tentukan satu komputer untuk master dan beberapa komputer untuk worker. </li>
   <li> Pastikan seluruh komputer terhubung dalam satu jaringan (misalnya: terhubung dengan Wifi yang sama). </li>
-  <li> Update dan upgrade package ` sudo apt update && sudo apt upgrade ` </li>
-  <li> Install beberapa package sebagai utilitas, yaitu ` net-tools ` dan ` vim ` (opsional). </li>
+  <li> Update dan upgrade package `sudo apt update && sudo apt upgrade` </li>
+  <li> Install beberapa package sebagai utilitas, yaitu `net-tools` dan `vim` (opsional). </li>
 </ol>
 
 
