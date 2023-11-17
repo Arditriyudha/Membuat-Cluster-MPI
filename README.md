@@ -11,7 +11,116 @@ Pada tutorial ini, kita akan memahami langkah-langkah yang diperlukan untuk memb
 </ol>
 
 ## Konfigurasi File `/etc/hosts`
+### 1. Untuk Master
+Buka file `/etc/hosts` menggunakan editor teks seperti vim, vi, nano, atau yang sejenisnya. Selanjutnya, tambahkan beberapa entri IP dan alias untuk setiap komputer. Berikut adalah contohnya.
 ```bash
-<li> Untuk Master </li>
-Buka file /etc/hosts melalui vim (atau vi, nano, yang lainnya). Tambahkan beberapa IP dan aliasnya dari masing-masing komputer. Berikut contohnya.
+10.9.56.77 master
+10.9.58.78 worker1
+10.9.57.33 worker2
+```
+### 2. Untuk worker
+Sama seperti master, Kemudian tambahkan entri IP dan alias hanya untuk IP master dan IP komputer itu sendiri. Contohnya seperti berikut.
+```bash
+10.9.56.77 master
+10.9.58.78 worker1
+```
+## Buat User Baru
+### 1. Buat User
+> lakukan di **Master** dan di **worker**
+Buat user baru dengan nama yang sama di masing-masing komputer. pada tutorial ini saya menggunakan nama `mpiuser`
+```bash
+sudo adduser mpiuser
+```
+### 2. Beri Akses Root
+> lakukan di **Master** dan di **worker**
+```bash
+sudo usermod -aG mpiuser
+```
+### 3. Masuk ke User yang Telah Dibuat
+> lakukan di **Master** dan di **worker**
+```bash
+su - mpiuser
+```
+## Konfigurasi SSH
+Setelah masuk ke dalam akun pengguna yang telah Anda buat sebelumnya, lakukan konfigurasi SSH dengan mengikuti langkah-langkah berikut:
+### 1. Install SSH
+> lakukan di **Master** dan di **worker**
+```bash
+sudo apt install openssh-server
+```
+anda bisa mencoba untuk menghubungkan komputer dengan SSH
+```bash
+ssh <nama user>@<host>
+# Misal: ssh mpiuser@worker1
+```
+contoh :
+![Check SSH - Master.jpeg](https://github.com/Arditriyudha/Open-MPI/blob/main/Check%20SSH%20-%20Master.jpeg)
+### 2. Buat Key
+> lakukan di **Master**
+masukkan perintah berikut.
+```bash
+ssh-keygen -t -rsa
+```
+Anda akan diminta untuk memberikan beberapa input, namun Anda dapat melewatinya tanpa harus memberikan informasi tambahan.
+
+Kunci SSH akan disimpan di direktori `~/.ssh` dengan nama `id_rsa` untuk kunci privat dan `id_rsa.pub` untuk kunci publik.
+
+### 3. Salin Key Publik ke Worker
+> Lakukan di **Master**
+Kunci publik harus disalin ke setiap worker dan disimpan dalam file `authorized_keys`. Tindakan ini dapat dilakukan di master menggunakan SSH.
+```bash
+cd ~/.ssh
+cat id_rsa.pub | ssh <nama user>@<host> "mkdir .ssh cat >> .ssh/authorized_keys"
+```
+Gantilah `<nama pengguna>` dengan nama pengguna yang bersangkutan dan `<host>` dengan alamat host dari worker tersebut. Terapkan perintah ini pada semua worker. Berkas `authorized_keys` akan dibuat di direktori `~/.ssh`.
+
+## Konfigurasi NFS
+### 1. Buat Shared Folder
+> lakukan di **Master** dan di **worker**
+Buatlah direktori dengan nama pilihan Anda, contohnya `cloud`. Disarankan untuk menempatkannya di dalam direktori `~/` atau `~/Desktop`.
+```bash
+mkdir ~/cloud
+```
+### 2. Install NFS Server
+> Lakukan di **Master**
+```bash
+sudo apt install nfs-kernel-kernel
+```
+### 3. Konfigurasi File `/etc/exports`
+> Lakukan di **Master**
+Buka file `/etc/exports` menggunakan nano (atau gunakan editor teks lainnya jika diinginkan).
+tulisakan dengan perintah berikut.
+```bash
+sudo nano /etc/exports
+```
+Kemudian tambahkan baris berikut.
+```bash
+<shared folder> *(rw,sync,no_root_squash,no_subtree_check)
+# Misal: /home/mpiuser/cloud *(rw,sync,no_root_squash,no_subtree_check)
+```
+selanjutnya jalankan perintah berikut.
+```bash
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+```
+### Install NFS Client
+> Lakukan di **Worker**
+```bash
+sudo mount <server host>:<shared folder di server> <shared folder di client>
+# Misal: sudo mount master:/home/mpiuser/cloud /home/mpiuser/cloud
+```
+Coba buat file atau folder dalam di shared folder di salah satu komputer. Seharusnya, file atau folder tersebut akan tampil di direktori yang sama di setiap komputer.
+
+## Konfigurasi MPI
+### 1. Install MPI
+> Lakukan di **Master** dan **worker**
+```bash
+sudo apt install openmpi-bin libopenmpi-dev
+```
+### 2. Install Library `mpi4py`
+> Lakukan di **Master** dan **worker**
+Install `mpi4py` dengan pip. Install package `python3-pip` jika belum memiliki pip.
+```bash
+sudo apt install python3-pip
+pip install mpi4py
 ```
