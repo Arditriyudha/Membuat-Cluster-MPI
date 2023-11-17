@@ -10,5 +10,8 @@ Pada tutorial ini, kita akan memahami langkah-langkah yang diperlukan untuk memb
   <li> Install beberapa package sebagai utilitas, yaitu `net-tools` dan `vim` (opsional). </li>
 </ol>
 
-
-
+## Konfigurasi File `/etc/hosts`
+```bash
+<li> Untuk Master </li>
+Buka file /etc/hosts melalui vim (atau vi, nano, yang lainnya). Tambahkan beberapa IP dan aliasnya dari masing-masing komputer. Berikut contohnya.
+```
