@@ -170,12 +170,12 @@ kemudian kami juga mencoba menjalankan beberapa program lain, dan menghasilkan o
 
 Dibuat untuk **memenuhi Tugas Mata Kuliah Pemrosesan Parallel**
 **Kelompok 2 Kelas SK5A**
-**<ol>
+<ol>
   <li> Muhammad Dzaky Khairy (09011182126001)</li>
   <li> Edo Pratama (09011182126007) </li>
   <li> Dhani Saputra (09011182126019)</li>
   <li> Ardi Tri Yudha (09011282126043) </li>
-</ol>**
+</ol>
 
 
 
